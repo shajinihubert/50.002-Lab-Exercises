@@ -1,0 +1,251 @@
+Timing analysis for C:\Users\User\Documents\50.002\50002\lab6_part1basicblock at Thu Dec 01 09:28:04 SGT 2016
+
+==================================================================
+
+Worst-case tPDs from clk to top-level outputs:
+
+
+  tPD from clk to ia27 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia27 [xbeta.xpc#4.xdreg]
+
+  tPD from clk to ia15 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia15 [xbeta.xpc#16.xdreg]
+
+  tPD from clk to ia23 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia23 [xbeta.xpc#8.xdreg]
+
+  tPD from clk to ia19 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia19 [xbeta.xpc#12.xdreg]
+
+  tPD from clk to ia1 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia1 [xbeta.xpc#30.xdreg]
+
+  tPD from clk to ia28 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia28 [xbeta.xpc#3.xdreg]
+
+  tPD from clk to ia12 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia12 [xbeta.xpc#19.xdreg]
+
+  tPD from clk to ia16 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia16 [xbeta.xpc#15.xdreg]
+
+  tPD from clk to ia24 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia24 [xbeta.xpc#7.xdreg]
+
+  tPD from clk to ia0 (0.190ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.190ns = 0.190ns ia0 [xbeta.xpc#31.xdreg]
+
+==================================================================
+
+Hold time violations for clk:
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#0.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#1.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#2.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#3.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#4.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#5.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#6.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#7.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#8.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#9.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#10.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#11.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#12.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#13.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#14.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#15.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#16.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#17.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#18.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#19.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#20.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#21.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#22.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#23.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#24.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#25.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#26.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#27.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#28.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#29.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#30.xdreg]
+
+  tCD from reset to reset violates hold time by -0.025ns:
+
+    + 0.000ns = 0.000ns reset [vreset]
+    - 0.025ns = -0.025ns clk [xbeta.xpc#31.xdreg]
+
+  tCD from ma11 to ma11 violates hold time by -0.020ns:
+
+    + 0.000ns = 0.000ns ma11
+    - 0.020ns = -0.020ns clk [xmem]
+
+==================================================================
+
+Minimum cycle time for clk is 10.480ns:
+
+  tPD from clk to xbeta.wdata0 (10.480ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.212ns = 0.212ns ia11 [xbeta.xpc#20.xdreg]
+    + 4.005ns = 4.217ns id31%0 [xmem]
+    + 2.005ns = 6.222ns moe%0 [xbeta.xctl.xctl]
+    + 4.006ns = 10.228ns mrd0%0 [xmem]
+    + 0.213ns = 10.440ns xbeta.wdata0 [xbeta.xwdselmux#31.xmux4]
+    + 0.040ns = 10.480ns clk [xbeta.xregfile.xregfile]
+
+  tPD from clk to mwd0 (8.674ns):
+
+    + 0.000ns = 0.000ns clk [vclk]
+    + 0.212ns = 0.212ns ia11 [xbeta.xpc#20.xdreg]
+    + 4.005ns = 4.217ns id31%0 [xmem]
+    + 2.025ns = 6.242ns xbeta.ra2sel%0 [xbeta.xctl.xctl]
+    + 0.152ns = 6.393ns xbeta.xregfile.ra2mux4 [xbeta.xregfile.xra2mux#0.xmux2]
+    + 2.005ns = 8.398ns xbeta.xregfile.bdata0%0 [xbeta.xregfile.xregfile]
+    + 0.134ns = 8.532ns xbeta.rbdata0 [xbeta.xregfile.xr2check.xfive#31.xmux2]
+    + 0.102ns = 8.634ns mwd0 [xbeta.xbuff3#31.xbuffer]
+    + 0.040ns = 8.674ns clk [xmem]

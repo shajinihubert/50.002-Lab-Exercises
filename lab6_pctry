@@ -1,0 +1,25 @@
+.include "C:/Users/User/Documents/50.002/50002/nominal.jsim"
+.include "C:/Users/User/Documents/50.002/50002/stdcell.jsim"
+.include "C:/Users/User/Documents/50.002/50002/lab6pc.jsim"
+
+.subckt pc clk reset ia[31:0]
+Xmux reset#32 iad[31:0] 0#32 muxout[31:0] mux2
+Xdreg muxout[31:0] clk#32 ia[31:0] dreg
+XFA ia[31:0] 0#29 vdd 0#2 iad[31:0] adder32
+.ends
+
+.subckt adder32 A[31:0] XB[31:0] S[31:0]
+*Xxor B[31:0] 0#32 XB[31:0] xor2
+Xadder0 A0 XB0 0 S0 C0 FA
+Xadder A[31:1] XB[31:1] C[30:0] S[31:1] C[31:1] FA
+.ends
+
+.subckt FA a b c s co
+Xxora a b 1 xor2
+Xxorb 1 c s xor2
+Xnanda a b 2 nand2
+Xnandb a c 3 nand2
+Xnandc b c 4 nand2
+Xnand 2 3 4 co nand3
+.ends
+

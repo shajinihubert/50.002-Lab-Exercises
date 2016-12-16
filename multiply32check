@@ -1,0 +1,152 @@
+.include "C:/Users/User/Documents/50.002/50002/nominal.jsim"
+.include "C:/Users/User/Documents/50.002/50002/stdcell.jsim"
+.include "C:/Users/User/Documents/50.002/50002/lab3multiply.jsim"
+
+.subckt alu ALUFN[5:0] A[31:0] B[31:0] alu[31:0] z v n
+Xadd ALUFN0 A[31:0] B[31:0] S[31:0] z v n adder32
+Xboo ALUFN[3:0] A[31:0] B[31:0] boole[31:0] boole32
+Xcom ALUFN[2:1] z v n cmp[31:0] compare32
+Xshi ALUFN[1:0] A[31:0] B[4:0] shift[31:0] shift32
+Xmul A[31:0] B[31:0] mul[31:0] mult
+Xtest ALUFN[5]#32 ALUFN[4]#32 mul[31:0] shift[31:0] boole[31:0] cmp[31:0] alu[31:0] mux4
+.ends
+
+.subckt FA a b c s co
+Xxora a b 1 xor2
+Xxorb 1 c s xor2
+Xnanda a b 2 nand2
+Xnandb a c 3 nand2
+Xnandc b c 4 nand2
+Xnand 2 3 4 co nand3
+.ends
+
+.subckt mult A[31:0] B[31:0] mul[31:0]
+Xb1 B0#32 A[31:0] b00[31:0] and2
+Xb2 B1#31 A[30:0] b01[30:0] and2
+Xb3 B2#30 A[29:0] b02[29:0] and2
+Xb4 B3#29 A[28:0] b03[28:0] and2
+Xb5 B4#28 A[27:0] b04[27:0] and2
+Xb6 B5#27 A[26:0] b05[26:0] and2
+Xb7 B6#26 A[25:0] b06[25:0] and2
+Xb8 B7#25 A[24:0] b07[24:0] and2
+Xb9 B8#24 A[23:0] b08[23:0] and2
+Xb10 B9#23 A[22:0] b09[22:0] and2
+Xb11 B10#22 A[21:0] b10[21:0] and2
+Xb12 B11#21 A[20:0] b11[20:0] and2
+Xb13 B12#20 A[19:0] b12[19:0] and2
+Xb14 B13#19 A[18:0] b13[18:0] and2
+Xb15 B14#18 A[17:0] b14[17:0] and2
+Xb16 B15#17 A[16:0] b15[16:0] and2
+Xb17 B16#16 A[15:0] b16[15:0] and2
+Xb18 B17#15 A[14:0] b17[14:0] and2
+Xb19 B18#14 A[13:0] b18[13:0] and2
+Xb20 B19#13 A[12:0] b19[12:0] and2
+Xb21 B20#12 A[11:0] b20[11:0] and2
+Xb22 B21#11 A[10:0] b21[10:0] and2
+Xb23 B22#10 A[9:0] b22[9:0] and2
+Xb24 B23#9 A[8:0] b23[8:0] and2
+Xb25 B24#8 A[7:0] b24[7:0] and2
+Xb26 B25#7 A[6:0] b25[6:0] and2
+Xb27 B26#6 A[5:0] b26[5:0] and2
+Xb28 B27#5 A[4:0] b27[4:0] and2
+Xb29 B28#4 A[3:0] b28[3:0] and2
+Xb30 B29#3 A[2:0] b29[2:0] and2
+Xb31 B30#2 A[1:0] b30[1:0] and2
+Xb32 B31#1 A[0] b31[0] and2
+
+Xfa1 b00[31:1] b01[30:0] 0#31 fa1[30:0] 0#31 FA
+Xfa2 fa1[30:1] b02[29:0] 0#30 fa2[29:0] 0#30 FA
+Xfa3 fa2[29:1] b03[28:0] 0#29 fa3[28:0] 0#29 FA
+Xfa4 fa3[28:1] b04[27:0] 0#28 fa4[27:0] 0#28 FA
+Xfa5 fa4[27:1] b05[26:0] 0#27 fa5[26:0] 0#27 FA
+Xfa6 fa5[26:1] b06[25:0] 0#26 fa6[25:0] 0#26 FA
+Xfa7 fa6[25:1] b07[24:0] 0#25 fa7[24:0] 0#25 FA
+Xfa8 fa7[24:1] b08[23:0] 0#24 fa8[23:0] 0#24 FA
+Xfa9 fa8[23:1] b09[22:0] 0#23 fa9[22:0] 0#23 FA
+Xfa10 fa9[22:1] b10[21:0] 0#22 fa10[21:0] 0#22 FA
+Xfa11 fa10[21:1] b11[20:0] 0#21 fa11[20:0] 0#21 FA
+Xfa12 fa11[20:1] b12[19:0] 0#20 fa12[19:0] 0#20 FA
+Xfa13 fa12[19:1] b13[18:0] 0#19 fa13[18:0] 0#19 FA
+Xfa14 fa13[18:1] b14[17:0] 0#18 fa14[17:0] 0#18 FA
+Xfa15 fa14[17:1] b15[16:0] 0#17 fa15[16:0] 0#17 FA
+Xfa16 fa15[16:1] b16[15:0] 0#16 fa16[15:0] 0#16 FA
+Xfa17 fa16[15:1] b17[14:0] 0#15 fa17[14:0] 0#15 FA
+Xfa18 fa17[14:1] b18[13:0] 0#14 fa18[13:0] 0#14 FA
+Xfa19 fa18[13:1] b19[12:0] 0#13 fa19[12:0] 0#13 FA
+Xfa20 fa29[12:1] b20[11:0] 0#12 fa20[11:0] 0#12 FA
+Xfa21 fa20[11:1] b21[10:0] 0#11 fa21[10:0] 0#11 FA
+Xfa22 fa21[10:1] b22[9:0] 0#10 fa22[9:0] 0#10 FA
+Xfa23 fa22[9:1] b23[8:0] 0#9 fa23[8:0] 0#9 FA
+Xfa24 fa23[8:1] b24[7:0] 0#8 fa24[7:0] 0#8 FA
+Xfa25 fa24[7:1] b25[6:0] 0#7 fa25[6:0] 0#7 FA
+Xfa26 fa25[6:1] b26[5:0] 0#6 fa26[5:0] 0#6 FA
+Xfa27 fa26[5:1] b27[4:0] 0#5 fa27[4:0] 0#5 FA
+Xfa28 fa27[4:1] b28[3:0] 0#4 fa28[3:0] 0#4 FA
+Xfa29 fa28[3:1] b29[2:0] 0#3 fa29[2:0] 0#3 FA
+Xfa30 fa29[2:1] b30[1:0] 0#2 fa30[1:0] 0#2 FA
+Xfa31 fa30[1] b31[0] 0 fa31[0:0] 0 FA
+
+Xp0 A[0] B[0] mul[0] and2
+Xp1 fa1[0] mul[1] buffer
+Xp2 fa2[0] mul[2] buffer
+Xp3 fa3[0] mul[3] buffer
+Xp4 fa4[0] mul[4] buffer
+Xp5 fa5[0] mul[5] buffer
+Xp6 fa6[0] mul[6] buffer
+Xp7 fa7[0] mul[7] buffer
+Xp8 fa8[0] mul[8] buffer
+Xp9 fa9[0] mul[9] buffer
+Xp10 fa10[0] mul[10] buffer
+Xp11 fa11[0] mul[11] buffer
+Xp12 fa12[0] mul[12] buffer
+Xp13 fa13[0] mul[13] buffer
+Xp14 fa14[0] mul[14] buffer
+Xp15 fa15[0] mul[15] buffer
+Xp16 fa16[0] mul[16] buffer
+Xp17 fa17[0] mul[17] buffer
+Xp18 fa18[0] mul[18] buffer
+Xp19 fa19[0] mul[19] buffer
+Xp20 fa20[0] mul[20] buffer
+Xp21 fa21[0] mul[21] buffer
+Xp22 fa22[0] mul[22] buffer
+Xp23 fa23[0] mul[23] buffer
+Xp24 fa24[0] mul[24] buffer
+Xp25 fa25[0] mul[25] buffer
+Xp26 fa26[0] mul[26] buffer
+Xp27 fa27[0] mul[27] buffer
+Xp28 fa28[0] mul[28] buffer
+Xp29 fa29[0] mul[29] buffer
+Xp30 fa30[0] mul[30] buffer
+Xp31 fa31[0] mul[31] buffer
+
+*Xp1 b01[0] b00[1] 0 mul[1] 0 FA
+*Xp2 b02[0] b01[1] 0 mul[2] 0 FA
+*Xp3 b03[0] b02[1] 0 mul[3] 0 FA
+*Xp4 b04[0] b03[1] 0 mul[4] 0 FA
+*Xp5 b05[0] b04[1] 0 mul[5] 0 FA
+*Xp6 b06[0] b05[1] 0 mul[6] 0 FA
+*Xp7 b07[0] b06[1] 0 mul[7] 0 FA
+*Xp8 b08[0] b07[1] 0 mul[8] 0 FA
+*Xp9 b09[0] b08[1] 0 mul[9] 0 FA
+*Xp10 b10[0] b09[1] 0 mul[10] 0 FA
+*Xp11 b11[0] b10[1] 0 mul[11] 0 FA
+*Xp12 b12[0] b11[1] 0 mul[12] 0 FA
+*Xp13 b13[0] b12[1] 0 mul[13] 0 FA
+*Xp14 b14[0] b13[1] 0 mul[14] 0 FA
+*Xp16 b16[0] b15[1] 0 mul[16] 0 FA
+*Xp17 b17[0] b16[1] 0 mul[17] 0 FA
+*Xp18 b18[0] b17[1] 0 mul[18] 0 FA
+*Xp19 b19[0] b18[1] 0 mul[19] 0 FA
+*Xp20 b20[0] b19[1] 0 mul[20] 0 FA
+*Xp21 b21[0] b20[1] 0 mul[21] 0 FA
+*Xp22 b22[0] b21[1] 0 mul[22] 0 FA
+*Xp23 b23[0] b22[1] 0 mul[23] 0 FA
+*Xp24 b24[0] b23[1] 0 mul[24] 0 FA
+*Xp25 b25[0] b24[1] 0 mul[25] 0 FA
+*Xp26 b26[0] b25[1] 0 mul[26] 0 FA
+*Xp27 b27[0] b26[1] 0 mul[27] 0 FA
+*Xp28 b28[0] b27[1] 0 mul[28] 0 FA
+*Xp29 b29[0] b28[1] 0 mul[29] 0 FA
+*Xp30 b30[0] b29[1] 0 mul[30] 0 FA
+*Xp31 b31[0] b30[1] 0 mul[31] 0 FA
+.ends

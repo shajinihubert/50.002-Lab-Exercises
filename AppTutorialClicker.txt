@@ -1,0 +1,10 @@
+@Override
+protected void onCreate(Bundle savedInstanceState){
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+}
+
+--Edit button text from right menu
+--Edit button text from activity_main>>text
+{11:45}https://www.youtube.com/watch?v=0wrJA3mAcSo
+	

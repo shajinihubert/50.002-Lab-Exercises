@@ -1,0 +1,28 @@
+
+.include beta.uasm
+
+	LDR(Stackbase, SP) |Initialise stackframe
+	CMOVE(4, R1)	|R1 = 4
+	PUSH(R1)	|Push R1 as an argument before function call
+	BR(square, LP)	|Call square function
+	DEALLOCATE(1)	|remove argument from stack
+	HALT()		| Stop program
+
+square:			|square function
+	PUSH(LP)	|Standard subroutine entry sequence
+	PUSH(BP)	|
+	MOVE(SP,BP)	|
+
+	PUSH(R2)	|Store R2, because I want to use it
+	LD(BP,-12,R2)	|Get first argument
+     	MUL(R2,R2,R0) 	|Square it and store at R0
+
+        POP(R2) |Restore R1 to original value after usage
+
+        MOVE(BP,SP) |standard subroutine exit sequence
+        POP(BP)
+        POP(LP)
+        JMP(LP)
+
+Stackbase:LONG(.+4)
+	.=.+0x100

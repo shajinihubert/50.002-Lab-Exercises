@@ -1,0 +1,106 @@
+.include beta.uasm
+.include lab5checkoff.uasm
+
+count_bull_cows:
+    PUSH(LP)
+    PUSH(BP)
+    MOVE(SP, BP)
+    PUSH(r1)  | bulls
+    PUSH(r2)  | cows
+    PUSH(r3)  | i      
+    PUSH(r4)  | j      
+    PUSH(r5)  | btemp  
+    PUSH(r6)  | atry   
+    PUSH(r7)  | btry   
+    PUSH(r8)  | mask   
+    PUSH(r9)  | a 
+    PUSH(r10) | b
+    PUSH(r11)
+    PUSH(r12)
+    LD(BP,-12,r9)
+    LD(BP,-16,r10)
+    CMOVE(0,r1)   
+    CMOVE(0xF,r8)
+    CMOVE(0,r3)
+    BR(bull_for)		|START!
+
+bull_if:
+    AND(r9,r8,r12)		|a&mask
+    AND(r10,r8,r11)		|b&mask
+    CMPEQ(r12,r11,r12)		|check to satisfy if condition
+    BEQ(r12,bull_for_next) 	|failing if condition goes to next iteration
+
+    ADDC(r1,1,r1)		|increment bulls
+    OR(r9,r8,r9)		|redefine a = a|mask
+    OR(r10,r8,r10) 		|goes back to bull_for
+
+bull_for_next:
+    SHLC(r8,4,r8)		|shift mask
+    ADDC(r3,1,r3)		|increment i
+	
+bull_for:
+    CMPLEC(r3,3,r11)
+    BNE(r11,bull_if)		|satisfying for condition goes to bull_if
+
+    CMOVE(0,r2)			|initialise cows
+    CMOVE(0,r3)			|initialise i for cows	
+    BR(cow_digit_for)		|move on to counting cows
+
+cow_digit_if:
+    ANDC(r9,0xF,r6)		|initializing atry
+    SHRC(r9,4,r9)		|shift a for next round of iteration
+    CMPEQC(r6,0xF,r11)		|checking cow_digit_if condition
+    BNE(r11, cow_digit_for_next) |failing if condition goes to next cow_digit iteration
+
+    MOVE(r10,r5)		|btemp
+    CMOVE(0xF,r8)		|mask
+    CMOVE(0,r4)			|initialize j
+    BR(cow_bit_for)		|move on to cow bit
+
+cow_bit_if: 
+    ANDC(r5,0xF,r7)		|btry
+    SHRC(r5,4,r5)		|shift btemp
+    CMPEQ(r7,r6,r12)		|checking btry == atry
+    BEQ(r12,cow_bit_for_next)	|branch for failing if condition
+
+    ADDC(r2,1,r2)		|increment cows
+    OR(r10,r8,r10)		|redefine b & mask per loop
+    BR(cow_digit_for_next)	
+
+cow_bit_for_next:
+    SHLC(r8,4,r8)		|shift mask
+    ADDC(r4,1,r4)		|increment j
+
+cow_bit_for: 
+    CMPLEC(r4,3,r11)		|same as bull_for condition
+    BNE(r11,cow_bit_if)		|continue with for loop
+
+cow_digit_for_next:
+    ADDC(r3,1,r3)
+
+cow_digit_for:
+    CMPLEC(r3,3,r11)			|same as bull_for iteration
+    BNE(r11,cow_digit_if)		
+
+
+    SHLC(r1,4,r0)			|bulls*16
+    ADD(r0,r2,r0)			|add cows
+    POP(r12) 
+    POP(r11)  
+    POP(r10)  
+    POP(r9)  
+    POP(r8)  
+    POP(r7)  
+    POP(r6)  
+    POP(r5)  
+    POP(r4) 
+    POP(r3)
+    POP(r2)
+    POP(r1)
+    MOVE(BP,SP)        | standard subroutine exit sequence
+    POP(BP)
+    POP(LP)
+    RTN()
+
+StackBase: LONG(.+4)
+	.=.+0x1000

@@ -1,0 +1,26 @@
+.include "C:/Users/User/Documents/50.002/50002/nominal.jsim"
+.include "C:/Users/User/Documents/50.002/50002/stdcell.jsim"
+.include "C:/Users/User/Documents/50.002/50002/lab6regfile.jsim"
+
+*outputs radata and rbdata
+*wdata refer to wadata
+.subckt regfile clk werf ra2sel ra[4:0] rb[4:0] rc[4:0] wdata[31:0] radata[31:0] rbdata[31:0] 
+
+Xra2mux ra2sel#5 rb[4:0] rc[4:0] ra2mux[4:0] mux2
+
+Xregfile 
++ vdd 0 0 ra[4:0] radata[31:0]
++ vdd 0 0 ra2mux[4:0] rbdata[31:0]
++ 0 clk werf rc[4:0] wdata[31:0]
++ $memory width=32 nlocations=31
+
+
+.ends
+
+.subckt r31mux r[5:1] rORIGINAL nextINSTRUCTION
+Xone r1 r2 r12 and2
+Xtwo r3 r4 r34 and2
+Xthree r12 r34 r1234 and2
+Xfour r1234 r5 r12345h and2  //r12345h is output of 5 ands --> to check for all 0 input
+Xfive#32 r12345h#32 rORIGINAL 0#32 nextINSTRUCTION mux2
+.ends

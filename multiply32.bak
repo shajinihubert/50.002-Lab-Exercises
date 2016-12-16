@@ -1,0 +1,272 @@
+.include "C:/Users/User/Documents/50.002/50002/nominal.jsim"
+.include "C:/Users/User/Documents/50.002/50002/stdcell.jsim"
+.include "C:/Users/User/Documents/50.002/50002/lab3checkoff_10.jsim"
+*.include "C:/Users/User/Documents/50.002/50002/lab3multiply.jsim"
+
+.subckt alu ALUFN[5:0] A[31:0] B[31:0] alu[31:0] z v n
+Xadd ALUFN0 A[31:0] B[31:0] S[31:0] z v n adder32
+Xboo ALUFN[3:0] A[31:0] B[31:0] boole[31:0] boole32
+Xcom ALUFN[2:1] z v n cmp[31:0] compare32
+Xshi ALUFN[1:0] A[31:0] B[4:0] shift[31:0] shift32
+Xmul A[31:0] B[31:0] mul[31:0] mult
+Xchoose ALUFN1#32 ALUFN0#32 S[31:0] mul[31:0] 0#32 0#32 mud[31:0] mux4
+Xtest ALUFN[5]#32 ALUFN[4]#32 mud[31:0] shift[31:0] boole[31:0] cmp[31:0] alu[31:0] mux4
+.ends
+
+.subckt adder32 ALUFN0 A[31:0] B[31:0] S[31:0] z v n 
+Xxor B[31:0] ALUFN0#32 XB[31:0] xor2
+Xadder0 A0 XB0 ALUFN0 S0 C0 FA
+Xadder A[31:1] XB[31:1] C[30:0] S[31:1] C[31:1] FA
+Xvvv A31 XB31 S31 v vvv
+Xzzz S[31:0] z zzz
+Xnnn S31 n buffer
+.ends
+
+.subckt vvv a b s o
+Xinv a aa inverter
+Xinv1 b bb inverter
+Xinv2 s ss inverter 
+Xand1 a b ss 1 and3 
+Xand2 s aa bb 2 and3
+Xor 1 2 o or2
+.ends
+
+.subckt zzz S[31:0] z 
+Xor4a S[7:0] S[15:8] S[23:16] S[31:24] W[7:0] or4
+Xor4b W[1:0] W[3:2] W[5:4] W[7:6] X[1:0] or4
+Xnor2 X0 X1 z nor2
+.ends
+
+.subckt FA a b c s co
+Xa a b 1 xor2
+Xb 1 c s xor2
+Xnota a b 2 nand2
+Xnotb a c 3 nand2
+Xnotc b c 4 nand2
+Xfin 2 3 4 co nand3
+.ends
+
+.subckt mult A[31:0] B[31:0] mul[31:0]
+Xb1 B0#32 A[31:0] b00[31:0] and2
+Xb2 B1#31 A[30:0] b01[30:0] and2
+Xb3 B2#30 A[29:0] b02[29:0] and2
+Xb4 B3#29 A[28:0] b03[28:0] and2
+Xb5 B4#28 A[27:0] b04[27:0] and2
+Xb6 B5#27 A[26:0] b05[26:0] and2
+Xb7 B6#26 A[25:0] b06[25:0] and2
+Xb8 B7#25 A[24:0] b07[24:0] and2
+Xb9 B8#24 A[23:0] b08[23:0] and2
+Xb10 B9#23 A[22:0] b09[22:0] and2
+Xb11 B10#22 A[21:0] b10[21:0] and2
+Xb12 B11#21 A[20:0] b11[20:0] and2
+Xb13 B12#20 A[19:0] b12[19:0] and2
+Xb14 B13#19 A[18:0] b13[18:0] and2
+Xb15 B14#18 A[17:0] b14[17:0] and2
+Xb16 B15#17 A[16:0] b15[16:0] and2
+Xb17 B16#16 A[15:0] b16[15:0] and2
+Xb18 B17#15 A[14:0] b17[14:0] and2
+Xb19 B18#14 A[13:0] b18[13:0] and2
+Xb20 B19#13 A[12:0] b19[12:0] and2
+Xb21 B20#12 A[11:0] b20[11:0] and2
+Xb22 B21#11 A[10:0] b21[10:0] and2
+Xb23 B22#10 A[9:0] b22[9:0] and2
+Xb24 B23#9 A[8:0] b23[8:0] and2
+Xb25 B24#8 A[7:0] b24[7:0] and2
+Xb26 B25#7 A[6:0] b25[6:0] and2
+Xb27 B26#6 A[5:0] b26[5:0] and2
+Xb28 B27#5 A[4:0] b27[4:0] and2
+Xb29 B28#4 A[3:0] b28[3:0] and2
+Xb30 B29#3 A[2:0] b29[2:0] and2
+Xb31 B30#2 A[1:0] b30[1:0] and2
+Xb32 B31#1 A[0] b31[0] and2
+
+Xefsdfwef C1y[0] constant0
+Xefwadsdef C2y[0] constant0
+Xeasdfwef C3y[0] constant0
+Xefwef C4y[0] constant0
+Xedfffwef C5y[0] constant0
+Xefwsdef C6y[0] constant0
+Xefwsfdef C7y[0] constant0
+Xefwdcsef C8y[0] constant0
+Xefwefsdc C9y[0] constant0
+Xefwsxdef C10y[0] constant0
+Xefwsdfef C11y[0] constant0
+Xefwasef C12y[0] constant0
+Xefwafef C13y[0] constant0
+Xefwcdef C14y[0] constant0
+Xefwhytef C15y[0] constant0
+Xefwertef C16y[0] constant0
+Xefwewerf C17y[0] constant0
+Xefwsdewef C18y[0] constant0
+Xefsdwef C19y[0] constant0
+Xefwfef C20y[0] constant0
+Xefwgsef C21y[0] constant0
+Xefwiewf C22y[0] constant0
+Xefwjmef C23y[0] constant0
+Xefwhnheiulf C24y[0] constant0
+Xefwmjef C25y[0] constant0
+Xefwertgf C26y[0] constant0
+Xefwhref C27y[0] constant0
+Xefwhreegef C28y[0] constant0
+Xefwedfsf C29y[0] constant0
+Xefwedhjysf C30y[0] constant0
+
+Xreferffa1   b00[31:1] b01[30:0] C1y[30:0] fa1y[30:0] C1y[31:1] FA
+Xdvsdffa2   fa1y[30:1] b02[29:0] C2y[29:0] fa2y[29:0] C2y[30:1] FA
+Xwerewrfa3   fa2y[29:1] b03[28:0] C3y[28:0] fa3y[28:0] C3y[29:1] FA
+Xwergerwerfa4   fa3y[28:1] b04[27:0] C4y[27:0] fa4y[27:0] C4y[28:1] FA
+Xtu557fa5   fa4y[27:1] b05[26:0] C5y[26:0] fa5y[26:0] C5y[27:1] FA
+Xew4t45fa6   fa5y[26:1] b06[25:0] C6y[25:0] fa6y[25:0] C6y[26:1] FA
+Xgehrfa7   fa6y[25:1] b07[24:0] C7y[24:0] fa7y[24:0] C7y[25:1] FA
+X456uyfa8   fa7y[24:1] b08[23:0] C8y[23:0] fa8y[23:0] C8y[24:1] FA
+Xgrt6ufa9   fa8y[23:1] b09[22:0] C9y[22:0] fa9y[22:0] C9y[23:1] FA
+X34erfa10  fa9y[22:1] b10[21:0] C10y[21:0] fa10y[21:0] C10y[22:1] FA
+Xu6u7fa11 fa10y[21:1] b11[20:0] C11y[20:0] fa11y[20:0] C11y[21:1] FA
+Xert4fa12 fa11y[20:1] b12[19:0] C12y[19:0] fa12y[19:0] C12y[20:1] FA
+Xjytifa13 fa12y[19:1] b13[18:0] C13y[18:0] fa13y[18:0] C13y[19:1] FA
+Xethrfa14 fa13y[18:1] b14[17:0] C14y[17:0] fa14y[17:0] C14y[18:1] FA 
+Xu7i66fa15 fa14y[17:1] b15[16:0] C15y[16:0] fa15y[16:0] C15y[17:1] FA
+Xrehry6yfa16 fa15y[16:1] b16[15:0] C16y[15:0] fa16y[15:0] C16y[16:1] FA
+X345345grfa17 fa16y[15:1] b17[14:0] C17y[14:0] fa17y[14:0] C17y[15:1] FA
+Xuytrhrfa18 fa17y[14:1] b18[13:0] C18y[13:0] fa18y[13:0] C18y[14:1] FA
+Xrty4t3fa19 fa18y[13:1] b19[12:0] C19y[12:0] fa19y[12:0] C19y[13:1] FA
+X3gdfyfa20 fa19y[12:1] b20[11:0] C20y[11:0] fa20y[11:0] C20y[12:1] FA
+Xedfefgerfa21 fa20y[11:1] b21[10:0] C21y[10:0] fa21y[10:0] C21y[11:1] FA
+Xwerfffa22 fa21y[10:1] b22[9:0] C22y[9:0] fa22y[9:0] C22y[10:1] FA
+Xtyrhjfa23 fa22y[9:1] b23[8:0] C23y[8:0] fa23y[8:0] C23y[9:1] FA
+Xerwefa24 fa23y[8:1] b24[7:0] C24y[7:0] fa24y[7:0] C24y[8:1] FA
+Xrthfa25 fa24y[7:1] b25[6:0] C25y[6:0] fa25y[6:0] C25y[7:1] FA
+X5yegfa26 fa25y[6:1] b26[5:0] C26y[5:0] fa26y[5:0] C26y[6:1] FA
+Xhgdfa27 fa26y[5:1] b27[4:0] C27y[4:0] fa27y[4:0] C27y[5:1] FA
+Xertefa28 fa27y[4:1] b28[3:0] C28y[3:0] fa28y[3:0] C28y[4:1] FA
+Xuyu75fa29 fa28y[3:1] b29[2:0] C29y[2:0] fa29y[2:0] C29y[3:1] FA
+Xererfa30 fa29y[2:1] b30[1:0] C30y[1:0] fa30y[1:0] C30y[2:1] FA
+X54yytfa31 fa30y[1] b31[0] 0 fa31y[0:0] C31y[1] FA
+
+Xp0 A[0] B[0] mul[0] and2
+Xp1 fa1y[0] mul[1] buffer
+Xp2 fa2y[0] mul[2] buffer
+Xp3 fa3y[0] mul[3] buffer
+Xp4 fa4y[0] mul[4] buffer
+Xp5 fa5y[0] mul[5] buffer
+Xp6 fa6y[0] mul[6] buffer
+Xp7 fa7y[0] mul[7] buffer
+Xp8 fa8y[0] mul[8] buffer
+Xp9 fa9y[0] mul[9] buffer
+Xp10 fa10y[0] mul[10] buffer
+Xp11 fa11y[0] mul[11] buffer
+Xp12 fa12y[0] mul[12] buffer
+Xp13 fa13y[0] mul[13] buffer
+Xp14 fa14y[0] mul[14] buffer
+Xp15 fa15y[0] mul[15] buffer
+Xp16 fa16y[0] mul[16] buffer
+Xp17 fa17y[0] mul[17] buffer
+Xp18 fa18y[0] mul[18] buffer
+Xp19 fa19y[0] mul[19] buffer
+Xp20 fa20y[0] mul[20] buffer
+Xp21 fa21y[0] mul[21] buffer
+Xp22 fa22y[0] mul[22] buffer
+Xp23 fa23y[0] mul[23] buffer
+Xp24 fa24y[0] mul[24] buffer
+Xp25 fa25y[0] mul[25] buffer
+Xp26 fa26y[0] mul[26] buffer
+Xp27 fa27y[0] mul[27] buffer
+Xp28 fa28y[0] mul[28] buffer
+Xp29 fa29y[0] mul[29] buffer
+Xp30 fa30y[0] mul[30] buffer
+Xp31 fa31y[0] mul[31] buffer
+.ends
+
+.subckt compare32 ALUFN[2:1] z v n cmp[31:0]
+Xmux ALUFN1 ALUFN2 0 z 1 2 cmp0 mux4 
+Xxor v n 1 xor2
+Xor z 1 2 or2
+.connect 0 cmp[31:1]
+.ends
+
+.subckt boole32 ALUFN[3:0] A[31:0] B[31:0] boole[31:0]
+Xbool A[31:0] B[31:0] ALUFN0#32 ALUFN1#32 ALUFN2#32 ALUFN3#32 boole[31:0] mux4
+.ends
+
+.subckt shift32 ALUFN[1:0] A[31:0] B[4:0] shift[31:0]
+
+Xr1 A[0] C[31] buffer
+Xr2 A[1] C[30] buffer
+Xr3 A[2] C[29] buffer
+Xr4 A[3] C[28] buffer
+Xr5 A[4] C[27] buffer
+Xr6 A[5] C[26] buffer
+Xr7 A[6] C[25] buffer
+Xr8 A[7] C[24] buffer
+Xr9 A[8] C[23] buffer
+Xr10 A[9] C[22] buffer
+Xr11 A[10] C[21] buffer
+Xr12 A[11] C[20] buffer
+Xr13 A[12] C[19] buffer
+Xr14 A[13] C[18] buffer
+Xr15 A[14] C[17] buffer
+Xr16 A[15] C[16] buffer
+Xr17 A[16] C[15] buffer
+Xr18 A[17] C[14] buffer
+Xr19 A[18] C[13] buffer
+Xr20 A[19] C[12] buffer
+Xr21 A[20] C[11] buffer
+Xr22 A[21] C[10] buffer
+Xr23 A[22] C[9] buffer
+Xr24 A[23] C[8] buffer
+Xr25 A[24] C[7] buffer
+Xr26 A[25] C[6] buffer
+Xr27 A[26] C[5] buffer
+Xr28 A[27] C[4] buffer
+Xr29 A[28] C[3] buffer
+Xr30 A[29] C[2] buffer
+Xr31 A[30] C[1] buffer
+Xr32 A[31] C[0] buffer
+
+X31 ALUFN[0]#32 A[31:0] C[31:0] D[31:0] mux2
+X32 ALUFN[1] 0 A[31] E[0] mux2
+
+X1 B4#16 D[31:16] D[15:0] W[31:16] mux2
+X2 B4#16 D[15:0] E[0]#16 W[15:0] mux2
+X3 B3#24 W[31:8] W[23:0] X[31:8] mux2
+X4 B3#8 W[7:0] E[0]#8 X[7:0] mux2
+X5 B2#28 X[31:4] X[27:0] Y[31:4] mux2
+X6 B2#4 X[3:0] E[0]#4 Y[3:0] mux2
+X7 B1#30 Y[31:2] Y[29:0] Z[31:2] mux2
+X8 B1#2 Y[1:0] E[0]#2 Z[1:0] mux2
+X9 B0#31 Z[31:1] Z[30:0] s[31:1] mux2
+X10 B0#1 Z[0] E[0] s[0] mux2
+
+Xo1 ALUFN[0] s[0] s[31] shift[0] mux2
+Xo2 ALUFN[0] s[1] s[30] shift[1] mux2
+Xo3 ALUFN[0] s[2] s[29] shift[2] mux2
+Xo4 ALUFN[0] s[3] s[28] shift[3] mux2
+Xo5 ALUFN[0] s[4] s[27] shift[4] mux2
+Xo6 ALUFN[0] s[5] s[26] shift[5] mux2
+Xo7 ALUFN[0] s[6] s[25] shift[6] mux2
+Xo8 ALUFN[0] s[7] s[24] shift[7] mux2
+Xo9 ALUFN[0] s[8] s[23] shift[8] mux2
+Xo10 ALUFN[0] s[9] s[22] shift[9] mux2
+Xo11 ALUFN[0] s[10] s[21] shift[10] mux2
+Xo12 ALUFN[0] s[11] s[20] shift[11] mux2
+Xo13 ALUFN[0] s[12] s[19] shift[12] mux2
+Xo14 ALUFN[0] s[13] s[18] shift[13] mux2
+Xo15 ALUFN[0] s[14] s[17] shift[14] mux2
+Xo16 ALUFN[0] s[15] s[16] shift[15] mux2
+Xo17 ALUFN[0] s[16] s[15] shift[16] mux2
+Xo18 ALUFN[0] s[17] s[14] shift[17] mux2
+Xo19 ALUFN[0] s[18] s[13] shift[18] mux2
+Xo20 ALUFN[0] s[19] s[12] shift[19] mux2
+Xo21 ALUFN[0] s[20] s[11] shift[20] mux2
+Xo22 ALUFN[0] s[21] s[10] shift[21] mux2
+Xo23 ALUFN[0] s[22] s[9] shift[22] mux2
+Xo24 ALUFN[0] s[23] s[8] shift[23] mux2
+Xo25 ALUFN[0] s[24] s[7] shift[24] mux2
+Xo26 ALUFN[0] s[25] s[6] shift[25] mux2
+Xo27 ALUFN[0] s[26] s[5] shift[26] mux2
+Xo28 ALUFN[0] s[27] s[4] shift[27] mux2
+Xo29 ALUFN[0] s[28] s[3] shift[28] mux2
+Xo30 ALUFN[0] s[29] s[2] shift[29] mux2
+Xo31 ALUFN[0] s[30] s[1] shift[30] mux2
+Xo32 ALUFN[0] s[31] s[0] shift[31] mux2
+.ends

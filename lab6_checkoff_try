@@ -1,0 +1,273 @@
+.include "C:/Users/User/Documents/50.002/50002/nominal.jsim"
+.include "C:/Users/User/Documents/50.002/50002/stdcell.jsim"
+.include "C:/Users/User/Documents/50.002/50002/lab6checkoff.jsim"
+
+.subckt beta clk reset irq ia[31:0] id[31:0] ma[31:0] moe mrd[31:0] wr mwd[31:0]
+
+
+
+
+
+xpc clk reset ia[31:0] pc
+xctl reset id[31:26] ra2sel bsel alufn[5:0] wdsel[1:0] werf moe wr ctl
+xregfile clk werf ra2sel id[20:16] id[15:11] id[25:21] wdselout[31:0] radata[31:0] mwd[31:0] regfile
+xbselmux bsel#32 mwd[31:0] id15#17 id[14:0] bselout[31:0] mux2
+xalu alufn[5:0] radata[31:0] bselout[31:0] ma[31:0] z v n alu
+xwdselmux wdsel[0]#32 wdsel[1]#32 0#32 ma[31:0] mrd[31:0] 0#32 wdselout[31:0] mux4
+.ends
+
+.subckt irq_pcsel irq pc out[2:0]
+Xdef irq 
+
+.ends 
+
+.subckt alu ALUFN[5:0] A[31:0] B[31:0] alu[31:0] z v n
+Xadd ALUFN0 A[31:0] B[31:0] S[31:0] z v n adder32
+Xboo ALUFN[3:0] A[31:0] B[31:0] boole[31:0] boole32
+Xcom ALUFN[2:1] z v n cmp[31:0] compare32
+Xshi ALUFN[1:0] A[31:0] B[4:0] shift[31:0] shift32
+Xtest ALUFN[5]#32 ALUFN[4]#32 S[31:0] shift[31:0] boole[31:0]  cmp[31:0] alu[31:0] mux4
+.ends
+
+.subckt adder32 ALUFN0 A[31:0] B[31:0] S[31:0] z v n 
+Xxor B[31:0] ALUFN0#32 XB[31:0] xor2
+Xadder0 A0 XB0 ALUFN0 S0 C0 FA
+Xadder A[31:1] XB[31:1] C[30:0] S[31:1] C[31:1] FA
+Xvvv A31 XB31 S31 v vvv
+Xzzz S[31:0] z zzz
+Xnnn S31 n buffer
+.ends
+
+.subckt vvv a b s o
+Xinv a aa inverter
+Xinv1 b bb inverter
+Xinv2 s ss inverter 
+Xand1 a b ss 1 and3 
+Xand2 s aa bb 2 and3
+Xor 1 2 o or2
+.ends
+
+.subckt zzz S[31:0] z 
+Xor4a S[7:0] S[15:8] S[23:16] S[31:24] W[7:0] or4
+Xor4b W[1:0] W[3:2] W[5:4] W[7:6] X[1:0] or4
+Xnor2 X0 X1 z nor2
+.ends
+
+.subckt FA a b c s co
+Xxora a b 1 xor2
+Xxorb 1 c s xor2
+Xnanda a b 2 nand2
+Xnandb a c 3 nand2
+Xnandc b c 4 nand2
+Xnand 2 3 4 co nand3
+.ends
+
+.subckt compare32 ALUFN[2:1] z v n cmp[31:0]
+Xmux ALUFN1 ALUFN2 0 z 1 2 cmp0 mux4 
+Xxor v n 1 xor2
+Xor z 1 2 or2
+.connect 0 cmp[31:1]
+.ends
+
+.subckt boole32 ALUFN[3:0] A[31:0] B[31:0] boole[31:0]
+Xbool A[31:0] B[31:0] ALUFN0#32 ALUFN1#32 ALUFN2#32 ALUFN3#32 boole[31:0] mux4
+.ends
+
+.subckt shift32 ALUFN[1:0] A[31:0] B[4:0] shift[31:0]
+Xr1 A[0] C[31] buffer
+Xr2 A[1] C[30] buffer
+Xr3 A[2] C[29] buffer
+Xr4 A[3] C[28] buffer
+Xr5 A[4] C[27] buffer
+Xr6 A[5] C[26] buffer
+Xr7 A[6] C[25] buffer
+Xr8 A[7] C[24] buffer
+Xr9 A[8] C[23] buffer
+Xr10 A[9] C[22] buffer
+Xr11 A[10] C[21] buffer
+Xr12 A[11] C[20] buffer
+Xr13 A[12] C[19] buffer
+Xr14 A[13] C[18] buffer
+Xr15 A[14] C[17] buffer
+Xr16 A[15] C[16] buffer
+Xr17 A[16] C[15] buffer
+Xr18 A[17] C[14] buffer
+Xr19 A[18] C[13] buffer
+Xr20 A[19] C[12] buffer
+Xr21 A[20] C[11] buffer
+Xr22 A[21] C[10] buffer
+Xr23 A[22] C[9] buffer
+Xr24 A[23] C[8] buffer
+Xr25 A[24] C[7] buffer
+Xr26 A[25] C[6] buffer
+Xr27 A[26] C[5] buffer
+Xr28 A[27] C[4] buffer
+Xr29 A[28] C[3] buffer
+Xr30 A[29] C[2] buffer
+Xr31 A[30] C[1] buffer
+Xr32 A[31] C[0] buffer
+X31 ALUFN[0]#32 A[31:0] C[31:0] D[31:0] mux2
+X32 ALUFN[1] 0 A[31] E[0] mux2
+X1 B4#16 D[31:16] D[15:0] W[31:16] mux2
+X2 B4#16 D[15:0] E[0]#16 W[15:0] mux2
+X3 B3#24 W[31:8] W[23:0] X[31:8] mux2
+X4 B3#8 W[7:0] E[0]#8 X[7:0] mux2
+X5 B2#28 X[31:4] X[27:0] Y[31:4] mux2
+X6 B2#4 X[3:0] E[0]#4 Y[3:0] mux2
+X7 B1#30 Y[31:2] Y[29:0] Z[31:2] mux2
+X8 B1#2 Y[1:0] E[0]#2 Z[1:0] mux2
+X9 B0#31 Z[31:1] Z[30:0] s[31:1] mux2
+X10 B0#1 Z[0] E[0] s[0] mux2
+Xo1 ALUFN[0] s[0] s[31] shift[0] mux2
+Xo2 ALUFN[0] s[1] s[30] shift[1] mux2
+Xo3 ALUFN[0] s[2] s[29] shift[2] mux2
+Xo4 ALUFN[0] s[3] s[28] shift[3] mux2
+Xo5 ALUFN[0] s[4] s[27] shift[4] mux2
+Xo6 ALUFN[0] s[5] s[26] shift[5] mux2
+Xo7 ALUFN[0] s[6] s[25] shift[6] mux2
+Xo8 ALUFN[0] s[7] s[24] shift[7] mux2
+Xo9 ALUFN[0] s[8] s[23] shift[8] mux2
+Xo10 ALUFN[0] s[9] s[22] shift[9] mux2
+Xo11 ALUFN[0] s[10] s[21] shift[10] mux2
+Xo12 ALUFN[0] s[11] s[20] shift[11] mux2
+Xo13 ALUFN[0] s[12] s[19] shift[12] mux2
+Xo14 ALUFN[0] s[13] s[18] shift[13] mux2
+Xo15 ALUFN[0] s[14] s[17] shift[14] mux2
+Xo16 ALUFN[0] s[15] s[16] shift[15] mux2
+Xo17 ALUFN[0] s[16] s[15] shift[16] mux2
+Xo18 ALUFN[0] s[17] s[14] shift[17] mux2
+Xo19 ALUFN[0] s[18] s[13] shift[18] mux2
+Xo20 ALUFN[0] s[19] s[12] shift[19] mux2
+Xo21 ALUFN[0] s[20] s[11] shift[20] mux2
+Xo22 ALUFN[0] s[21] s[10] shift[21] mux2
+Xo23 ALUFN[0] s[22] s[9] shift[22] mux2
+Xo24 ALUFN[0] s[23] s[8] shift[23] mux2
+Xo25 ALUFN[0] s[24] s[7] shift[24] mux2
+Xo26 ALUFN[0] s[25] s[6] shift[25] mux2
+Xo27 ALUFN[0] s[26] s[5] shift[26] mux2
+Xo28 ALUFN[0] s[27] s[4] shift[27] mux2
+Xo29 ALUFN[0] s[28] s[3] shift[28] mux2
+Xo30 ALUFN[0] s[29] s[2] shift[29] mux2
+Xo31 ALUFN[0] s[30] s[1] shift[30] mux2
+Xo32 ALUFN[0] s[31] s[0] shift[31] mux2
+.ends
+
+.subckt regfile clk werf ra2sel ra[4:0] rb[4:0] rc[4:0] wdata[31:0] radata[31:0] rbdata[31:0] 
+Xra2mux ra2sel#5 rb[4:0] rc[4:0] ra2mux[4:0] mux2
+Xr31check ra[4:0] adata[31:0] radata[31:0] r31mux 
+Xr2check ra2mux[4:0] bdata[31:0] rbdata[31:0] r31mux
+Xregfile 
++ vdd 0 0 ra[4:0] adata[31:0]
++ vdd 0 0 ra2mux[4:0] bdata[31:0]
++ 0 clk werf rc[4:0] wdata[31:0]
++ $memory width=32 nlocations=31
+.ends
+
+.subckt r31mux r[5:1] ra[31:0] rd[31:0]
+Xone r1 r2 r12 and2
+Xtwo r3 r4 r34 and2
+Xthree r12 r34 r1234 and2
+Xfour r1234 r5 r12345h and2  //r12345h is output of 5 ands --> to check for all 0 input
+Xfive r12345h#32 ra[31:0] 0#32 rd[31:0] mux2
+.ends
+
+.subckt pc clk reset ia[31:0]
+Xmux reset#32 iad[31:0] 0#32 muxout[31:0] mux2
+Xdreg muxout[31:0] clk#32 ia[31:0] dreg
+XFA ia[31:0] 0#29 vdd 0#2 iad[31:0] adderr32
+.ends
+
+.subckt adderr32 A[31:0] XB[31:0] S[31:0]
+*Xxor B[31:0] 0#32 XB[31:0] xor2
+Xadder0 A0 XB0 0 S0 C0 FAa
+Xadder A[31:1] XB[31:1] C[30:0] S[31:1] C[31:1] FAa
+.ends
+
+.subckt FAa a b c s co
+Xxora a b 1 xor2
+Xxorb 1 c s xor2
+Xnanda a b 2 nand2
+Xnandb a c 3 nand2
+Xnandc b c 4 nand2
+Xnand 2 3 4 co nand3
+.ends
+
+.subckt ctl reset id[31:26] ra2sel bsel alufn[5:0] wdsel[1:0] werf moe wr
+xctl vdd 0 0 id[31:26]
+    + pcsel[2:0] wasel asel ra2sel bsel alufn[5:0] 
+    + wdsel[1:0] werf moe xwr
+    + $memory width=18 nlocations=64 contents=(
+
+        + 0b000000000000000000    // 0
+        + 0b000000000000000000    // 1
+        + 0b000000000000000000    // 2
+        + 0b000000000000000000    // 3
+        + 0b000000000000000000    // 4
+        + 0b000000000000000000    // 5
+        + 0b000000000000000000    // 6
+        + 0b000000000000000000    // 7
+        + 0b000000000000000000    // 8
+        + 0b000000000000000000    // 9 
+        + 0b000000000000000000    // 10
+
+        + 0b000000000000000000    // 11
+        + 0b000000000000000000    // 12
+        + 0b000000000000000000    // 13
+        + 0b000000000000000000    // 14
+        + 0b000000000000000000    // 15
+        + 0b000000000000000000    // 16
+        + 0b000000000000000000    // 17
+        + 0b000000000000000000    // 18
+        + 0b000000000000000000    // 19
+        + 0b000000000000000000    // 20
+
+        + 0b000000000000000000    // 21
+        + 0b000000000000000000    // 22
+        + 0b000000000000000000    // 23
+        + 0b000000100000010110    // 24 LD
+        + 0b000001100000000001    // 25 ST
+        + 0b000000000000000000    // 26 
+        + 0b000000000000000000    // 27 
+        + 0b000000000000000000    // 28 
+        + 0b000000000000000000    // 29 
+        + 0b000000000000000000    // 30 
+
+        + 0b000000000000000000    // 31 
+        + 0b000000000000001100    // 32 ADD
+        + 0b000000000000101100    // 33 SUB
+        + 0b000000000000000000    // 34 
+        + 0b000000000000000000    // 35 
+        + 0b000000011001101100    // 36 CMPEQ
+        + 0b000000011010101100    // 37 CMPLT
+        + 0b000000011011101100    // 38 CMPLE
+        + 0b000000000000000000    // 39 
+        + 0b000000001100001100    // 40 AND
+
+        + 0b000000001111001100    // 41 OR
+        + 0b000000001011001100    // 42 XOR
+        + 0b000000000000000000    // 43 
+        + 0b000000010000001100    // 44 SHL
+        + 0b000000010000101100    // 45 SHR
+        + 0b000000010001101100    // 46 SRA
+        + 0b000000000000000000    // 47 
+        + 0b000000100000001100    // 48 ADDC
+        + 0b000000100000101100    // 49 SUBC
+        + 0b000000000000000000    // 50 
+
+        + 0b000000000000000000    // 51 
+        + 0b000000111001101100    // 52 CMPEQC
+        + 0b000000111010101100    // 53 CMPLTC
+        + 0b000000111011101100    // 54 CMPLEC
+        + 0b000000000000000000    // 55       
+        + 0b000000101100001100    // 56 ANDC
+        + 0b000000101111001100    // 57 ORC
+        + 0b000000101011001100    // 58 XORC
+        + 0b000000000000000000    // 59
+        + 0b000000110000001100    // 60 SHLC
+
+        + 0b000000110000101100    // 61 SHRC
+        + 0b000000110001101100    // 62 SRAC
+        + 0b000000000000000000    // 63      
+        + )
+xmux reset xwr 0 wr mux2
+.ends

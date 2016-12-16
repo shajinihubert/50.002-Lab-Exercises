@@ -1,0 +1,111 @@
+.include "C:/Users/User/Documents/50.002/50002/nominal.jsim"
+.include "C:/Users/User/Documents/50.002/50002/stdcell.jsim"
+.include "C:/Users/User/Documents/50.002/50002/lab3shifter.jsim"
+
+.subckt shift32 ALUFN[1:0] A[31:0] B[4:0] shift[31:0]
+
+Xr1 A[0] C[31] buffer
+Xr2 A[1] C[30] buffer
+Xr3 A[2] C[29] buffer
+Xr4 A[3] C[28] buffer
+Xr5 A[4] C[27] buffer
+Xr6 A[5] C[26] buffer
+Xr7 A[6] C[25] buffer
+Xr8 A[7] C[24] buffer
+Xr9 A[8] C[23] buffer
+Xr10 A[9] C[22] buffer
+Xr11 A[10] C[21] buffer
+Xr12 A[11] C[20] buffer
+Xr13 A[12] C[19] buffer
+Xr14 A[13] C[18] buffer
+Xr15 A[14] C[17] buffer
+Xr16 A[15] C[16] buffer
+Xr17 A[16] C[15] buffer
+Xr18 A[17] C[14] buffer
+Xr19 A[18] C[13] buffer
+Xr20 A[19] C[12] buffer
+Xr21 A[20] C[11] buffer
+Xr22 A[21] C[10] buffer
+Xr23 A[22] C[9] buffer
+Xr24 A[23] C[8] buffer
+Xr25 A[24] C[7] buffer
+Xr26 A[25] C[6] buffer
+Xr27 A[26] C[5] buffer
+Xr28 A[27] C[4] buffer
+Xr29 A[28] C[3] buffer
+Xr30 A[29] C[2] buffer
+Xr31 A[30] C[1] buffer
+Xr32 A[31] C[0] buffer
+
+X31 ALUFN[0]#32 A[31:0] C[31:0] D[31:0] mux2
+X32 ALUFN[1] 0 A[31] E[0] mux2
+
+X1 B4#16 D[31:16] D[15:0] W[31:16] mux2
+X2 B4#16 D[15:0] E[0]#16 W[15:0] mux2
+X3 B3#24 W[31:8] W[23:0] X[31:8] mux2
+X4 B3#8 W[7:0] E[0]#8 X[7:0] mux2
+X5 B2#28 X[31:4] X[27:0] Y[31:4] mux2
+X6 B2#4 X[3:0] E[0]#4 Y[3:0] mux2
+X7 B1#30 Y[31:2] Y[29:0] Z[31:2] mux2
+X8 B1#2 Y[1:0] E[0]#2 Z[1:0] mux2
+X9 B0#31 Z[31:1] Z[30:0] s[31:1] mux2
+X10 B0#1 Z[0] E[0] s[0] mux2
+
+Xo1 ALUFN[0] s[0] s[31] shift[0] mux2
+Xo2 ALUFN[0] s[1] s[30] shift[1] mux2
+Xo3 ALUFN[0] s[2] s[29] shift[2] mux2
+Xo4 ALUFN[0] s[3] s[28] shift[3] mux2
+Xo5 ALUFN[0] s[4] s[27] shift[4] mux2
+Xo6 ALUFN[0] s[5] s[26] shift[5] mux2
+Xo7 ALUFN[0] s[6] s[25] shift[6] mux2
+Xo8 ALUFN[0] s[7] s[24] shift[7] mux2
+Xo9 ALUFN[0] s[8] s[23] shift[8] mux2
+Xo10 ALUFN[0] s[9] s[22] shift[9] mux2
+Xo11 ALUFN[0] s[10] s[21] shift[10] mux2
+Xo12 ALUFN[0] s[11] s[20] shift[11] mux2
+Xo13 ALUFN[0] s[12] s[19] shift[12] mux2
+Xo14 ALUFN[0] s[13] s[18] shift[13] mux2
+Xo15 ALUFN[0] s[14] s[17] shift[14] mux2
+Xo16 ALUFN[0] s[15] s[16] shift[15] mux2
+Xo17 ALUFN[0] s[16] s[15] shift[16] mux2
+Xo18 ALUFN[0] s[17] s[14] shift[17] mux2
+Xo19 ALUFN[0] s[18] s[13] shift[18] mux2
+Xo20 ALUFN[0] s[19] s[12] shift[19] mux2
+Xo21 ALUFN[0] s[20] s[11] shift[20] mux2
+Xo22 ALUFN[0] s[21] s[10] shift[21] mux2
+Xo23 ALUFN[0] s[22] s[9] shift[22] mux2
+Xo24 ALUFN[0] s[23] s[8] shift[23] mux2
+Xo25 ALUFN[0] s[24] s[7] shift[24] mux2
+Xo26 ALUFN[0] s[25] s[6] shift[25] mux2
+Xo27 ALUFN[0] s[26] s[5] shift[26] mux2
+Xo28 ALUFN[0] s[27] s[4] shift[27] mux2
+Xo29 ALUFN[0] s[28] s[3] shift[28] mux2
+Xo30 ALUFN[0] s[29] s[2] shift[29] mux2
+Xo31 ALUFN[0] s[30] s[1] shift[30] mux2
+Xo32 ALUFN[0] s[31] s[0] shift[31] mux2
+
+*X11 B4#16 A[31:16] 0#16 W[31:16] mux2
+*X12 B4#16 A[15:0] A[31:16] W[15:0] mux2
+*X13 B3#8 W[31:24] 0#8 X[31:24] mux2
+*X14 B3#24 W[23:0] W[31:8] X[23:0] mux2
+*X15 B2#4 X[31:28] 0#4 pee[31:28] mux2
+*X16 B2#28 X[27:0] X[31:4] pee[27:0] mux2
+*X17 B1#2 Y[31:30] 0#2 Z[31:30] mux2
+*X18 B1#30 Y[29:0] Y[31:2] Z[29:0] mux2
+*X19 B0#1 Z[31] 0 sr[31] mux2
+*X20 B0#31 Z[30:0] Z[31:1] sr[30:0] mux2
+
+*X21 B4#16 A[31:16] A[31]#16 W[31:16] mux2
+*X22 B4#16 A[15:0] A[31:16] W[15:0] mux2
+*X23 B3#8 W[31:24] A[31]#8 X[31:24] mux2
+*X24 B3#24 W[23:0] W[31:8] X[23:0] mux2
+*X25 B2#4 X[31:28] A[31]#4 pee[31:28] mux2
+*X26 B2#28 X[27:0] X[31:4] pee[27:0] mux2
+*X27 B1#2 Y[31:30] A[31]#2 Z[31:30] mux2
+*X28 B1#30 Y[29:0] Y[31:2] Z[29:0] mux2
+*X29 B0#1 Z[31] A[31] sra[31] mux2
+*X30 B0#31 Z[30:0] Z[31:1] sra[30:0] mux2
+
+*X31 ALUFN[0]#32 sl[31:0] sl[31:0] shift[31:0] mux2
+*X32 ALUFN[1]#32 0#32 sra[31:0] shift[31:0] mux2
+.ends
